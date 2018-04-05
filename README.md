@@ -197,8 +197,21 @@ add(x,y)        #数组加法
 subtract(x,y)   #数组减法
 multiply(x,y)   #数组乘法
 divide(x,y)     #数组除法,如果x和y都是整数,那么执行整数除法
-true_divide()
-
+true_divide(x,y)  #数组除法,返回精确值
+floor_divide(x,y) #数组除法,取整
+negative(x)       #返回-x
+power(x,y)        #返回x^y
+remainder(x,y)    #返回x%y
+equal(x,y)           #判断对应元素是否相等,返回对应的bool数组
+not_equal(x,y)       #判断对应元素是否不相等,返回对应的bool数组
+less(x,y)            #判断对应x<y,返回对应的bool数组
+less_equal(x,y)      #判断对应x<=y,返回对应的bool数组
+greater(x,y)         #判断对应x>y,返回对应的bool数组
+greater_equal(x,y)   #判断对应x>=y,返回对应的bool数组
+np.logical_and       #相当于Python中的and逻辑与
+np.logical_or        #相当于Python中的or逻辑或
+np.logical_not       #相当于Python中的not逻辑非
+np.logical_xor       #相当于Python中的xor逻辑异或
 ```
 
 
