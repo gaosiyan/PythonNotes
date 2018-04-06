@@ -14,6 +14,11 @@
     - [pylot模块](#pylot模块)
     - [绘制子图](#绘制子图)
     - [matplotlib的配置文件](#matplotlib的配置文件)
+    - [面向对象绘图](#面向对象绘图)
+        - [Artist对象](#artist对象)
+            - [Artist对象属性](#artist对象属性)
+            - [Figure容器](#figure容器)
+            - [Axes容器](#axes容器)
 
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
@@ -337,6 +342,70 @@ plt.subplot(212)
 plt.title("3")
 plt.show()
 ```
+
+## 面向对象绘图
+&emsp;&emsp;`matplotlib`采用了面向对象技术,前面只用了简单的pyplot模块,屏蔽了很多细节,了解面向对象过程可以进一步的控制绘图细节.
+
+### Artist对象
+&emsp;&emsp;对于绘图最基础的对象是`Artist`对象.`Artist`对象的子类有简单类型和容器类型.简单类型的`Artist`对象是标准的绘图原件,例如:`Line2D`(2维直线),`Rectangle`(矩形),`Text`(文本),`AxesImage`(坐标图像)等.容器类型`Artist`对象可以包含很多简单类型的`Artist`对象,使他们组织成一个整体,例如:`Axis`(坐标轴),`Axes`(坐标系),`Figure`(图形)等.我们画函数图像时基本的步骤如下:
+
+1. 创建`Figure`(图形)对象;
+2. 为`Figure`对象,创建一个或多个`Axes`(坐标系)对象;
+3. 调用`Axes`对象的方法创建各种简单的`Artist`对象.
+
+&emsp;&emsp;代码如下:
+```
+#创建Figure对象
+fig = plt.figure()   
+
+#为Figure创建坐标轴对象,这里的取值是坐标轴在figure中的边距和大小,取值范围[0,1],[左右边距,上下边距,宽,高]
+ax = fig.add_axes([0.15,0.1,0.7,0.3])
+
+# 调用Axis对象的plot方法绘制直线,并返回该直线的Line2D对象,ax.plot一次可以绘制多条曲线,所以会返回一个列表,我们只取列表第一个元素
+line = ax.plot([1,2,3],[1,2,1])[0] 
+```
+
+&emsp;&emsp;`Axes`(坐标系)对象的`lines`属性(比如上面的代码用`ax.lines`)以列表形式返回当前坐标系的所有`Line2D`对象,如果想删除曲线,直接从此列表中删除即可.
+
+&emsp;&emsp;`Axes`(坐标系)对象`ax`的其它方法:
+
+&emsp;&emsp;`ax.set_xlabel("x轴标题")`设置X轴名称,实际上是调用`self.xaxis.set_label_text("x轴标题")`也就是修改坐标系对象的`Axis`(坐标轴)对象的相关属性.
+
+&emsp;&emsp;`ax.xaxis` 是ax坐标系对象的X轴`Axis`坐标轴对象,`ax.xaxis.label`获取坐标轴标题对象是一个`Text`(文本)对象,通过`ax.xaxis.label.get_text()`来获取,也可以通过`Text`(文本)对象的`_text`属性获取`ax.xaxis.label._text`.
+
+#### Artist对象属性
+&emsp;&emsp;每一个绘图元件都基于`Artist`对象,而每个`Artist`对象都有很多属性来控制显示效果,比如`Figure`对象和`Axes`对象都有`patch`属性用于控制背景,它又是一个`Rectangle`(矩形)对象.所有`Artist对象`的公有(常用)属性如下:
+
+* alpha 透明度,0到1之间,0为完全透明,1为完全不透明;
+* axes 拥有当前Artist对象的坐标轴对象,比如Line2D对象的坐标轴容器,可能为None;
+* figure 拥有当前Artist对象的figure对象,可能为None;
+* label 文本标签;
+* visible 是否可以;
+
+&emsp;&emsp;上面的属性可以通过`对象.set_label()`或者`对象.get_label()`的方式修改或者访问.
+
+#### Figure容器
+&emsp;&emsp;要修改某个坐标轴或者曲线的属性时先要获取该对象,就是如何找到对应的`Artist`对象,前面的代码`ax = fig.add_axes([0.15,0.1,0.7,0.3])`,在Figure容器中创建坐标系并返回坐标系对象`ax`,可以用过`ax`操作坐标系.例如`ax.grid(True)`显示当前坐标系的网格线.
+
+&emsp;&emsp;Figure常用属性:
+
+* axes 返回当前Figure容器中的Axes对象列表;
+* patch 返回当前Figure容器中的背景属性;
+* lines 返回当前Figure容器中的Line2D对象列表,可以直接在Figure上面用Line2D函数创建曲线,不一定基于坐标系对象;
+* texts 返回当前Figure容器中Text对象列表;
+
+#### Axes容器
+&emsp;&emsp;Axes容器是绘图最核心的容器,`plot`方法实际上是`Axes`对象的方法,它在对应的`Axes`对象上画曲线,当没有`Axes`对象时,`matplotlib`会自动创建
+
+
+
+
+
+
+
+
+
+
 
 
 
