@@ -262,7 +262,27 @@ plt.show()
 
 ![matplotlib_2](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_2.png?raw=true)
 
-&emsp;&emsp;如果没有创建`Figure`图表对象,那么matplotlib将自动创建一个`Figure`图表对象,上面的`plt.figure(figsize=(8,4))`语句用于创建`Figure`图表对象,8和4分别是宽度和高度,单位是英寸(默认每英寸100像素),`plt.figure(figsize=(8,4))`就是800*400.`plot`的前两个参数分别表示x和y轴,关键字参数`label`用于设置标签
+&emsp;&emsp;如果没有创建`Figure`图表对象,那么matplotlib将自动创建一个`Figure`图表对象,上面的`plt.figure(figsize=(8,4))`语句用于创建`Figure`图表对象,8和4分别是宽度和高度,单位是英寸(默认每英寸100像素),`plt.figure(figsize=(8,4))`就是800*400.
+
+&emsp;&emsp;`plot`的相关参数:
+
+* 前两个位置参数分别表示x和y轴;
+* 关键字参数`label`用于设置标签,标签前后用`$`后`matplotlib`后用内嵌的`LaTex`引擎将其显示成数学公式;
+* 关键字参数`color`用于指定颜色;
+* 关键字参数`linewidth`用于指定线宽,单位是像素可以不是整数,`linewidth`简写成`lw`;
+* 可以通过第三个位置参数,格式化字符串指定颜色和线的类型,比如上面的`plt.plot(x,z,"b--",label = "$cons(x)$")`,其中`b`表示蓝色,`--`表示虚线.IPython中输入`plt.plot?`可以查看格式化字符串的详细说明;
+
+&emsp;&emsp;`xlabel,ylabel,title,ylim,legend`等方法是Axes(坐标轴对象)的方法,`plot`方法是在`Axes`坐标轴对象上作图,而`Axes`坐标轴对象基于`Figure`图表对象.上面的代码没有显示创建`Axes`坐标轴对象,那么`matplotlib`会自动创建充满整个`Figure`对象的`Axes`坐标轴对象.其中:
+
+* `xlabel,ylabel`用于设置x和y轴的标题;
+* `title`设置坐标轴的标题;
+* `xlim,ylim`设置坐标轴的范围;
+* `legend`显示图例,上图右下角的小矩形
+
+&emsp;&emsp;`plt.save(*.jpg)`可以用于保存当前的`Figure`图表
+
+
+
 
 
 
