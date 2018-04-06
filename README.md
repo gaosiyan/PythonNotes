@@ -10,6 +10,8 @@
         - [直接创建数组](#%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84)
         - [存取元素](#%E5%AD%98%E5%8F%96%E5%85%83%E7%B4%A0)
     - [ufunc函数](#ufunc%E5%87%BD%E6%95%B0)
+- [matplotlib](#matplotlib)
+    - [pylot模块](#pylot%E6%A8%A1%E5%9D%97)
 
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
@@ -213,6 +215,19 @@ np.logical_or        #相当于Python中的or逻辑或
 np.logical_not       #相当于Python中的not逻辑非
 np.logical_xor       #相当于Python中的xor逻辑异或
 ```
+
+# matplotlib
+&emsp;&emsp;matplotlib是Python的绘图库,提供了类似matlab的绘图功能,采用面向对象技术实现.在大型程序中更加有效.
+
+## pylot模块 
+&emsp;&emsp;对面向对象技术进行了一定的封装,简化了绘图过程.示例代码如下:
+```
+from matplotlib import pyplot as plt # 常用plt重命名pyplot模块
+
+plt.plot([0,1],[0,1])    # 画(0,0)到(1,1)的直线
+plt.show()
+```
+&emsp;&emsp;图像如下:
 
 
 
