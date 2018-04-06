@@ -3,16 +3,17 @@
 - [Ipython](#ipython)
 - [Notebook](#notebook)
 - [NumPy](#numpy)
-    - [ndarray对象](#ndarray%E5%AF%B9%E8%B1%A1)
-        - [shape属性](#shape%E5%B1%9E%E6%80%A7)
-        - [reshape方法](#reshape%E6%96%B9%E6%B3%95)
-        - [数组元素类型](#%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%B1%BB%E5%9E%8B)
-        - [直接创建数组](#%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84)
-        - [存取元素](#%E5%AD%98%E5%8F%96%E5%85%83%E7%B4%A0)
-    - [ufunc函数](#ufunc%E5%87%BD%E6%95%B0)
+    - [ndarray对象](#ndarray对象)
+        - [shape属性](#shape属性)
+        - [reshape方法](#reshape方法)
+        - [数组元素类型](#数组元素类型)
+        - [直接创建数组](#直接创建数组)
+        - [存取元素](#存取元素)
+    - [ufunc函数](#ufunc函数)
 - [matplotlib](#matplotlib)
-    - [pylot模块](#pylot%E6%A8%A1%E5%9D%97)
-    - [绘制子图](#%E7%BB%98%E5%88%B6%E5%AD%90%E5%9B%BE)
+    - [pylot模块](#pylot模块)
+    - [绘制子图](#绘制子图)
+    - [matplotlib的配置文件](#matplotlib的配置文件)
 
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
@@ -232,7 +233,7 @@ plt.show()
 ```
 &emsp;&emsp;图像如下:
 
-![matplotlib_1](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_1.png?raw=true)
+![matplotlib_1](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_1.png?raw=true) 
 
 &emsp;&emsp;`plot`方法的第一个参数是x序列,第二个参数是y序列,这里可以直接输入Python中的列表序列,也可以输Numpy的数组.`plot(x,y)`将用x和y的对应元素画图.`plt.show()`将用阻塞的方式显示图像.
 
@@ -299,9 +300,43 @@ plt.show()
 
 &emsp;&emsp;图像如下:
 
-![matplotlib_3](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_3.png?raw=true)
+![matplotlib_3](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_3.png?raw=true) 
 
 &emsp;&emsp;`plt.subplot(2,2,1)`第一个参数表示划分成多少行,这里是2行,第而个参数表示划分成多少列,这里是2列.所以图像被分成2*2个子块,第三个参数表示在那个子块中画图,从左到右,从上至下由1开始编号.另外如果3个参数都小于10的话`plt.subplot(2,2,1)`可以写成`plt.subplot(221)`,`plt.subplot(2,2,2)`表示在第2个子块位置画图.`plt.subplot(2,1,2)`表示重新划分,成2行1列在第2个位置画图,效果就如上图.
+
+## matplotlib的配置文件
+&emsp;&emsp;绘制过程中用到的颜色,线形,字体等很多都直接使用`matplotlib`的默认配置,默认配置保存在一个名为`matplotlibrc`的配置文件中,通过修改配置文件,可以设置默认参数.可以有多个`matplotlibrc`配置文件,按照优先级使用,优先级如下:
+
+* 程序当前路径下的`matplotlibrc`配置文件;
+* 用户目录的`matplotlibrc`配置文件,通常位于用户目录下的`.matplotlib`目录下;
+* 系统配置文件,在`matplotlib`安装目录下的`mpl-data`中.
+
+&emsp;&emsp;可以通过下面的代码确认当前正在使用的配置文件路径:
+```
+import matplotlib
+matplotlib.matplotlib_fname()
+Out[6]: 'C:\\Anaconda3\\lib\\site-packages\\matplotlib\\mpl-data\\matplotlibrc'
+```
+&emsp;&emsp;`matplotlibrc`实际上是一个字典,通过`matplotlib.rc_params()`获取字典的内容.`matplotlib`被载入后会将这个文件加载到`matplotlib.rcParams`字典中,可以对该字典进行重新修改,而不影响原始`matplotlibrc`配置文件.如果修改了`matplotlib.rcParams`字典又想回到默认的`matplotlibrc`配置文件用`matplotlib.rcdefaults()`.`matplotlib`默认的字体不支持中文,要显示中文可以修改配置文件或者在程序中指定字体.通过`matplotlib.rcParams["font.family"] = "字体名称"`的方式修改字体.比如`matplotlib.rcParams["font.family"] = "simhei"`配置成黑体字体,通过下面的代码获取所有字体:
+```
+from matplotlib.font_manager import fontManager
+fontManager.ttflist
+```
+&emsp;&emsp;Windows10的字体都位于`C:\Windows\Fonts`下,在程序中配置字体更加灵活,可以配置多种字体但是比较复杂,如下:
+```
+# -*- coding:utf-8 -*-
+from matplotlib import pyplot as plt
+from matplotlib.font_manager import FontProperties
+
+font1 = FontProperties(fname=r"C:\Windows\Fonts\simhei.ttf",size = 14) # 配置字体对象和大小
+plt.subplot(221)
+plt.title("图1",fontproperties = font1) # 应用字体对象
+plt.subplot(222)
+plt.title("2")    # 默认字体
+plt.subplot(212)
+plt.title("3")
+plt.show()
+```
 
 
 
