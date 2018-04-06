@@ -235,6 +235,36 @@ plt.show()
 
 &emsp;&emsp;`plot`方法的第一个参数是x序列,第二个参数是y序列,这里可以直接输入Python中的列表序列,也可以输Numpy的数组.`plot(x,y)`将用x和y的对应元素画图.`plt.show()`将用阻塞的方式显示图像.
 
+&emsp;&emsp;下面的方法先创建一个`Figure`图表对象,并将`Figure`图表对象当成当前对象进行作图:
+```
+# -*- coding:utf-8 -*-
+import numpy as np
+from matplotlib import pyplot as plt
+
+x = np.linspace(0,10,1000)  #包含终点的1000个元素的等差数组
+y = np.sin(x)
+z = np.cos(x**2)
+
+plt.figure(figsize=(8,4)) # 创建Figure对象,并作为当前的默认对象
+
+plt.plot(x,y,label="$sin(x)$",color="red",linewidth=2)
+plt.plot(x,z,"b--",label = "$cons(x)$")
+
+plt.xlabel("Time(s)")
+plt.ylabel("Volt")
+plt.title("Pyplot")
+plt.ylim(-1.2,1.2)
+plt.legend()
+
+plt.show()
+```
+&emsp;&emsp;图像如下:
+
+![](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_2.png?raw=true)
+
+&emsp;&emsp;如果没有创建`Figure`图表对象,那么matplotlib将自动创建一个`Figure`图表对象
+
+
 
 
 
