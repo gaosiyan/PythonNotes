@@ -231,7 +231,7 @@ plt.show()
 ```
 &emsp;&emsp;图像如下:
 
-![](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_1.png?raw=true)
+![matplotlib_1](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_1.png?raw=true)
 
 &emsp;&emsp;`plot`方法的第一个参数是x序列,第二个参数是y序列,这里可以直接输入Python中的列表序列,也可以输Numpy的数组.`plot(x,y)`将用x和y的对应元素画图.`plt.show()`将用阻塞的方式显示图像.
 
@@ -260,9 +260,9 @@ plt.show()
 ```
 &emsp;&emsp;图像如下:
 
-![](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_2.png?raw=true)
+![matplotlib_2](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_2.png?raw=true)
 
-&emsp;&emsp;如果没有创建`Figure`图表对象,那么matplotlib将自动创建一个`Figure`图表对象
+&emsp;&emsp;如果没有创建`Figure`图表对象,那么matplotlib将自动创建一个`Figure`图表对象,上面的`plt.figure(figsize=(8,4))`语句用于创建`Figure`图表对象,8和4分别是宽度和高度,单位是英寸(默认每英寸100像素),`plt.figure(figsize=(8,4))`就是800*400.`plot`的前两个参数分别表示x和y轴,关键字参数`label`用于设置标签
 
 
 
