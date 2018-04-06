@@ -12,6 +12,7 @@
     - [ufunc函数](#ufunc%E5%87%BD%E6%95%B0)
 - [matplotlib](#matplotlib)
     - [pylot模块](#pylot%E6%A8%A1%E5%9D%97)
+    - [绘制子图](#%E7%BB%98%E5%88%B6%E5%AD%90%E5%9B%BE)
 
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
@@ -279,8 +280,26 @@ plt.show()
 * `xlim,ylim`设置坐标轴的范围;
 * `legend`显示图例,上图右下角的小矩形
 
-&emsp;&emsp;`plt.save(*.jpg)`可以用于保存当前的`Figure`图表
+&emsp;&emsp;`plt.save(*.jpg)`可以用于保存当前的`Figure`图表.
 
+## 绘制子图
+&emsp;&emsp;`subplot`用于在一个`Figure`中绘制多个子图,代码如下:
+```
+# -*- coding:utf-8 -*-
+from matplotlib import pyplot as plt
+
+plt.subplot(221)
+plt.title("1")
+plt.subplot(222)
+plt.title("2")
+plt.subplot(212)
+plt.title("3")
+plt.show()
+```
+
+&emsp;&emsp;图像如下:
+
+![matplotlib_2](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_3.png?raw=true)
 
 
 
