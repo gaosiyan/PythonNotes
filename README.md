@@ -288,18 +288,20 @@ plt.show()
 # -*- coding:utf-8 -*-
 from matplotlib import pyplot as plt
 
-plt.subplot(221)
+plt.subplot(2,2,1)
 plt.title("1")
-plt.subplot(222)
+plt.subplot(2,2,2)
 plt.title("2")
-plt.subplot(212)
+plt.subplot(2,1,2)
 plt.title("3")
 plt.show()
 ```
 
 &emsp;&emsp;图像如下:
 
-![matplotlib_2](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_3.png?raw=true)
+![matplotlib_3](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_3.png?raw=true)
+
+&emsp;&emsp;`plt.subplot(2,2,1)`第一个参数表示划分成多少行,这里是2行,第而个参数表示划分成多少列,这里是2列.所以图像被分成2*2个子块,第三个参数表示在那个子块中画图,从左到右,从上至下由1开始编号.另外如果3个参数都小于10的话`plt.subplot(2,2,1)`可以写成`plt.subplot(221)`,`plt.subplot(2,2,2)`表示在第2个子块位置画图.`plt.subplot(2,1,2)`表示重新划分,成2行1列在第2个位置画图,效果就如上图.
 
 
 
