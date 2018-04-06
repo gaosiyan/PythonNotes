@@ -33,6 +33,7 @@ Out[3]: 88
 ## ndarray对象
 &emsp;&emsp;通过给`array()`传递Python的列表对象来创建数组,代码如下:
 ```
+# -*- coding:utf-8 -*-
 import numpy as np
 
 a = np.array([1,2,3,4]) # 一维数组
@@ -222,6 +223,7 @@ np.logical_xor       #相当于Python中的xor逻辑异或
 ## pylot模块 
 &emsp;&emsp;对面向对象技术进行了一定的封装,简化了绘图过程.示例代码如下:
 ```
+# -*- coding:utf-8 -*-
 from matplotlib import pyplot as plt # 常用plt重命名pyplot模块
 
 plt.plot([0,1],[0,1])    # 画(0,0)到(1,1)的直线
@@ -229,7 +231,9 @@ plt.show()
 ```
 &emsp;&emsp;图像如下:
 
+![](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_1.png?raw=true)
 
+&emsp;&emsp;`plot`方法的第一个参数是x序列,第二个参数是y序列,这里可以直接输入Python中的列表序列,也可以输Numpy的数组.`plot(x,y)`将用x和y的对应元素画图.`plt.show()`将用阻塞的方式显示图像.
 
 
 
