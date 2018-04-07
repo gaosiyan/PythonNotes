@@ -488,17 +488,17 @@ def main():
     xt = 2 * np.cos(2 * np.pi * t)  # x(t) = 2cos(2*pi*t) 周期是1
 
     # Ts = 0.1秒对 x(t) = 2cos(2*pi*t)进行采样 -> x[n] = x[n*Ts] = 2cos(2*pi*(n*Ts))采样
-    Ts = 0.1                # 0.1S采样一次
-    n = np.arange(0,101,1)  # 10S有101个采样点[0,1,..100]
+    Ts = 0.1                        # 0.1S采样一次
+    n = np.arange(0,101,1)          # 10S有101个采样点[0,1,..100]
     xn = 2 * np.cos(2 * np.pi * np.multiply(n,Ts))  # x[n*Ts] = 2cos(2*pi*(n*Ts))
 
     # 序列创建完毕开始画图
-    fig = plt.figure()         # 创建Figure对象
+    fig = plt.figure()                        # 创建Figure对象
 
     # 画连续函数x(t) = 2cos(2*pi*t)
-    ax0 = fig.add_subplot(2,1,1) # 创建Axis对象  
-    ax0.plot(t,xt)             # 当成连续函数
-    ax0.grid(True)             # 打开网格
+    ax0 = fig.add_subplot(2,1,1)              # 创建Axis对象  
+    ax0.plot(t,xt)                            # 当成连续函数
+    ax0.grid(True)                            # 打开网格
     ax0.set_title("$x(t) = 2*cos(2*\pi*t)$")  # LaTex表达式
     ax0.xaxis.set_label_text("t")
     ax0.yaxis.set_label_text("$x(t)$")
@@ -515,8 +515,8 @@ def main():
 
     baseline -> x轴基线
     """
-    baseline.set_visible(False)  # 关闭X轴的基线显示
-    ax1.grid(True)               # 打开网格
+    baseline.set_visible(False)                  # 关闭X轴的基线显示
+    ax1.grid(True)                               # 打开网格
     ax1.set_title("$x[n] = 2*cos(2*\pi*n*Ts)$")  # LaTex表达式
     ax1.xaxis.set_label_text("n")
     ax1.yaxis.set_label_text("$x[n]$")  
