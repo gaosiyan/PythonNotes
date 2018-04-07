@@ -19,6 +19,9 @@
             - [Artist对象属性](#artist对象属性)
             - [Figure容器](#figure容器)
             - [Axes容器](#axes容器)
+            - [Axis容器](#axis容器)
+        - [面向对象的其它操作](#面向对象的其它操作)
+    - [其它绘图函数](#其它绘图函数)
 
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
@@ -395,7 +398,85 @@ line = ax.plot([1,2,3],[1,2,1])[0]
 * texts 返回当前Figure容器中Text对象列表;
 
 #### Axes容器
-&emsp;&emsp;Axes容器是绘图最核心的容器,`plot`方法实际上是`Axes`对象的方法,它在对应的`Axes`对象上画曲线,当没有`Axes`对象时,`matplotlib`会自动创建
+&emsp;&emsp;Axes容器是绘图最核心的容器,`plot`方法实际上是`Axes`对象的方法,它在对应的`Axes`对象上画曲线,当没有`Axes`对象时,`matplotlib`会自动创建.和`Figure`对象一样它有一个`patch`背景属性,当`Axes`是直角坐标系时,`patch`属性是一个`Rectangle`(矩形)对象,当`Axes`是极坐标系时,`patch`属性是一个`Circle`对象,下面的代码将Axes的背景设置为绿色:
+```
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.patch.set_facecolor("green")
+```
+&emsp;&emsp;`Axes`对象的`plot`方法会创建一组`Line2D`对象并将其添加到`Axes.lines`属性中,plot方法的关键字参数实际上是传递给Line2D对象的.
+
+&emsp;&emsp;Axes常用属性:
+
+* artists artists对象列表;
+* patch 背景对象;
+* lines Line2D对象列表;
+* texts Text对象列表;
+* xaxis X轴对象;
+* yaxis Y轴对象.
+
+#### Axis容器
+&emsp;&emsp;Axis是坐标轴对象,包括刻度线,刻度标签,坐标网格以及坐标文本等对象.刻度包括主刻度和副刻度.
+
+&emsp;&emsp;`get_major_ticks()`获取主刻度
+
+&emsp;&emsp;`get_minor_ticks()`获取副刻度
+
+&emsp;&emsp;每一个刻度线都是一个`XTick`或`YTick`对象,包括刻度线和刻度标签,通过坐标轴对象`axis`的`get_ticklocs()`方法获取刻度位置列表,`get_ticklabels()`获取刻度文本列表.代码示例:
+```
+axis = get_ticklines()                # 获取刻度线对象是一个Line2D对象列表,默认是获取主刻度线
+axis = get_ticklines(minor = True)    # 获取副刻度线
+```
+&emsp;&emsp;修改坐标轴刻度文本和刻度线的代码:
+```
+for label in axis.get_ticklabels():   # 遍历所有刻度标签文本
+    label.set_color("red")
+    label.set_rotation(45)            # 文本逆时针旋转45度
+    label.set_fontsize(16)            # 文本字体大小
+
+for line in axis.get_ticklines():     # 遍历所有刻度线对象
+    line.set_color("green")           # 刻度线为绿色
+    line.set_markersize(25)           # 刻度线高度
+    line.set_markeredgewidth(3)       # 刻度线宽度
+```
+
+### 面向对象的其它操作
+&emsp;&emsp;`fig = plt.gcf()` 返回当前的Figure对象
+
+&emsp;&emsp;`plt.scf(fig)` 切换当前的Figure对象
+
+&emsp;&emsp;`plt.getp(fig)` 返回当前的Figure对象的所有属性,可以用过set_或者get_的方式访问修改
+
+&emsp;&emsp;`line.get_linewidth()`获取Line2D对象的线宽 
+
+&emsp;&emsp;`axes = plt.gca()` 返回当前的坐标轴对象,默认创建是可以用这个方法返回坐标系并操作它
+
+&emsp;&emsp;`plt.sca(axes)` 默认坐标系切换,可以在多个坐标系中来回切换当前坐标系
+
+&emsp;&emsp;判断对象是哪个类可以用`对象名称.__class__.__name__`
+
+## 其它绘图函数
+&emsp;&emsp;`plot`函数用于绘制曲线;
+
+&emsp;&emsp;`scatter`函数用于绘制散点图,星座图;
+
+&emsp;&emsp;`pie`函数用于饼图;
+
+&emsp;&emsp;`bar`函数用于绘制直方图;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
