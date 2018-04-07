@@ -22,6 +22,7 @@
             - [Axis容器](#axis容器)
         - [面向对象的其它操作](#面向对象的其它操作)
     - [其它绘图函数](#其它绘图函数)
+    - [完整代码](#完整代码)
 
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
@@ -426,10 +427,11 @@ ax.patch.set_facecolor("green")
 ```
 axis = get_ticklines()                # 获取刻度线对象是一个Line2D对象列表,默认是获取主刻度线
 axis = get_ticklines(minor = True)    # 获取副刻度线
+xaxis.set_label_text("X轴")           # 修改x轴名称同plt.xlabel("Time(s)")
 ```
 &emsp;&emsp;修改坐标轴刻度文本和刻度线的代码:
 ```
-for label in axis.get_ticklabels():   # 遍历所有刻度标签文本
+for label in axis.get_ticklabels():   # 遍历所有刻度标签文本,只有主刻度有标签文本
     label.set_color("red")
     label.set_rotation(45)            # 文本逆时针旋转45度
     label.set_fontsize(16)            # 文本字体大小
@@ -463,6 +465,79 @@ for line in axis.get_ticklines():     # 遍历所有刻度线对象
 &emsp;&emsp;`pie`函数用于饼图;
 
 &emsp;&emsp;`bar`函数用于绘制直方图;
+
+&emsp;&emsp;`stem`函数用于绘制火柴杆图;
+
+&emsp;&emsp;具体示例可以参考[matplotlib官网示例](https://matplotlib.org/gallery/index.html) 
+
+## 完整代码
+```
+# -*- coding:utf-8 -*-
+__version__ = "0.1"
+
+"""
+周期是1秒的连续函数x(t) = 2*cos(2*pi*t)的Ts采样图
+"""
+
+import numpy as np
+from matplotlib import pyplot as plt
+
+def main():
+# 用于模拟连续函数 x(t) = 2cos(2*pi*t),画0到10S的图形
+    t = np.linspace(0,10,10000)     # 0~10秒取10000个点,用离散模拟连续
+    xt = 2 * np.cos(2 * np.pi * t)  # x(t) = 2cos(2*pi*t) 周期是1
+
+    # Ts = 0.1秒对 x(t) = 2cos(2*pi*t)进行采样 -> x[n] = x[n*Ts] = 2cos(2*pi*(n*Ts))采样
+    Ts = 0.1                # 0.1S采样一次
+    n = np.arange(0,101,1)  # 10S有101个采样点[0,1,..100]
+    xn = 2 * np.cos(2 * np.pi * np.multiply(n,Ts))  # x[n*Ts] = 2cos(2*pi*(n*Ts))
+
+    # 序列创建完毕开始画图
+    fig = plt.figure()         # 创建Figure对象
+
+    # 画连续函数x(t) = 2cos(2*pi*t)
+    ax0 = fig.add_subplot(2,1,1) # 创建Axis对象  
+    ax0.plot(t,xt)             # 当成连续函数
+    ax0.grid(True)             # 打开网格
+    ax0.set_title("$x(t) = 2*cos(2*\pi*t)$")  # LaTex表达式
+    ax0.xaxis.set_label_text("t")
+    ax0.yaxis.set_label_text("$x(t)$")
+
+    # 画离散函数x[n] = x[n*Ts] = 2cos(2*pi*(n*Ts))
+    ax1 = fig.add_subplot(2,1,2)
+
+    markerline, stemlines, baseline = ax1.stem(n,xn) # 火柴杆图    
+    """
+    markerline -> Line2D对象,火柴杆头部的曲线对象
+    stemlines -> Line2D对象列表,每个火柴杆连线,下面的代码控制不显示火柴棒,只有火柴头
+    for line in stemlines:
+        line.set_visible(False)
+
+    baseline -> x轴基线
+    """
+    baseline.set_visible(False)  # 关闭X轴的基线显示
+    ax1.grid(True)               # 打开网格
+    ax1.set_title("$x[n] = 2*cos(2*\pi*n*Ts)$")  # LaTex表达式
+    ax1.xaxis.set_label_text("n")
+    ax1.yaxis.set_label_text("$x[n]$")  
+
+    #plt.subplots_adjus用于控制边距,有6个关键字参数,其中top,bottom,left,right整个图的上下左右边距,hspace子图间的垂直间距,wspace子图间的水平间距
+    plt.subplots_adjust(hspace=0.5)
+    plt.show()
+
+if __name__ == '__main__':
+    main()
+```
+
+&emsp;&emsp; 效果图如下:
+
+![matplotlib_4](https://github.com/gaosiyan/PythonNotes/blob/master/Image/matplotlib_4.png?raw=true) 
+
+
+
+
+
+
 
 
 
