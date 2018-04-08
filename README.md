@@ -1,5 +1,29 @@
-
-
+- [pip命令](#pip命令)
+- [os模块](#os模块)
+- [sys模块](#sys模块)
+- [常用函数](#常用函数)
+- [math模块](#math模块)
+- [shutil模块](#shutil模块)
+- [运算符](#运算符)
+- [字符串操作](#字符串操作)
+- [字符串的编码和解码](#字符串的编码和解码)
+- [正则表达式](#正则表达式)
+- [Python代码基本框架](#python代码基本框架)
+- [参考代码段](#参考代码段)
+    - [文件迭代](#文件迭代)
+    - [设置豆瓣源的Python脚本](#设置豆瓣源的python脚本)
+    - [判断操作系统是32位还是64位](#判断操作系统是32位还是64位)
+- [pyuic5.exe的使用](#pyuic5exe的使用)
+- [Pylint的基本使用方法](#pylint的基本使用方法)
+- [autopep8的使用](#autopep8的使用)
+- [cx_Freeze 使用](#cxfreeze-使用)
+- [PyQt5](#pyqt5)
+    - [QCheckBox复选框对象](#qcheckbox复选框对象)
+- [ctypes使用](#ctypes使用)
+    - [ctypes类型和C类型对应表](#ctypes类型和c类型对应表)
+    - [结构体](#结构体)
+    - [指针](#指针)
+    - [共享空间的传递](#共享空间的传递)
 - [Ipython](#ipython)
 - [Notebook](#notebook)
 - [NumPy](#numpy)
@@ -23,38 +47,27 @@
         - [面向对象的其它操作](#面向对象的其它操作)
     - [其它绘图函数](#其它绘图函数)
     - [完整代码](#完整代码)
-
 # pip命令
-**pip 是Python的包管理工具**
+&emsp;&emsp;pip 是Python的包管理工具
 
-用pip更新自身
-`pip install -U pip`
+&emsp;&emsp;用pip更新自身`pip install -U pip`
 
-在pip源中查找对应包
-`pip search PackageName`
+&emsp;&emsp;在pip源中查找对应包`pip search PackageName`
 
-用pip安装包
-`pip install PackageName`
+&emsp;&emsp;用pip安装包`pip install PackageName`
 
-用pip更新包
-`pip install -U PackageName`
+&emsp;&emsp;用pip更新包`pip install -U PackageName`
 
-用pip卸载包
-`pip uninstall PackageName`
+&emsp;&emsp;用pip卸载包`pip uninstall PackageName`
 
-列出当前安装的包
-`pip list`
+&emsp;&emsp;列出当前安装的包`pip list`
 
-列出所有过期的包
-`pip list --outdated`
+&emsp;&emsp;列出所有过期的包`pip list --outdated`
 
-使用豆瓣源安装
-`pip  install PackageName  -i  https://pypi.doubanio.com/simple/`
+&emsp;&emsp;使用豆瓣源安装`pip  install PackageName  -i  https://pypi.doubanio.com/simple/`
 
-下载的whl文件也可以用上面的pip命令安装，带setup.py的文件执行
-`python setup.py install`
+&emsp;&emsp;下载的whl文件也可以用上面的pip命令安装，带setup.py的文件执行`python setup.py install`
 
-------
 # os模块
 `os.getcwd()    #返回当前目录`
 
@@ -118,7 +131,6 @@
 
 `os.environ #属性,以字典的形式返回当前系统的环境变量os.environ['path']相当于sys.path`
 
-------
 # sys模块
 `sys.version_info   #属性,返回解释器的相关属性信息`
 
@@ -182,7 +194,7 @@ for i in range(3):
 
 `repr(str)        #返回代引号的字符串"str"`
 
-------
+
 # math模块
 &emsp;&emsp;Python自带的math模块,常用的方法如下:
 
@@ -196,7 +208,6 @@ for i in range(3):
 
 &emsp;&emsp;`math.log(1024,2)`以2为底的对数运算,这里返回10,相当于log2 10
 
-------
 # shutil模块
 &emsp;&emsp;Python自带shutil模块,常用的方法如下:
 
@@ -206,16 +217,13 @@ for i in range(3):
 
 ------
 # 运算符
-```
-C中的逻辑且&&在Python中是and
-C中的逻辑或||在Python中是or
-C中取反!在Python中是not
-也支持位运算符并且,比如&(与),|(或),^(异或),~(非,按位取反);
-支持+=等操作符,但是不支持自加等运算符
->>和<<是算术移位,符号位扩展
-```
+* C中的逻辑且`&&`在Python中是`and`;
+* C中的逻辑或`||`在Python中是`or`;
+* C中取反`!`在Python中是`not`;
+* 支持位运算符,比如&(与),|(或),^(异或),~(非,按位取反);
+* 支持+=等操作符,但是不支持自加等运算符;
+* `>>`和`<<`是算术移位,符号位扩展;
 
-------
 # 字符串操作  
 
 `str.strip()               #返回去掉泛空格后的字符串，可以指定字符`
@@ -283,7 +291,6 @@ Out[4]: bytes
 * 方案1 `file = open(file,encoding='utf-8')`
 * 方案2 `file = open(file,'rb')`
 
-------
 # 正则表达式
 &emsp;&emsp;正则表达式(regex)是由一些字符和特殊符号组成的字符串，能够按照一定的模式匹配一系列相似的字符串。Python通过标准库的re模块，来支持正则表达式。Python中可以立即执行匹配,也可以将模式字符串编译成模式对象后,将模式对象与字符串匹配.
 
@@ -350,7 +357,6 @@ sh$ 表示匹配以sh结尾的字符
 \s匹配任何泛空格字符，回车，制表，空格，\S与之相反
  ``` 
 
-------
 # Python代码基本框架
 ``` 
 # -*- coding:utf-8 -*-
@@ -359,7 +365,6 @@ if __name__ == '__main__':
     import sys
  ``` 
 
-------
 # 参考代码段
 ## 文件迭代
 ```python
@@ -406,18 +411,9 @@ def Is64Windows():
     return 'PROGRAMFILES(X86)' in os.environ
 ```
 
-------
-# qtconsole 使用
-
-`变量名??`  显示相关的帮助信息
-
-`函数名/模块名??`   显示相关的帮助信息,注意函数名在这里不能带括号
-
-------
 # pyuic5.exe的使用
 &emsp;&emsp;pyuic5.exe用于将Qt Designe生成的*.ui文件编译成Python代码，在cmd中执行下面的命令将生成的ui文件重定向输出到py:文件`pyuic5 *.ui > 1.py `   
 
-------
 # Pylint的基本使用方法
 &emsp;&emsp;Pylint是Python源代码的静态检查工具
 
@@ -433,13 +429,11 @@ def Is64Windows():
 
 &emsp;&emsp;致命错误-F
 
-------
 # autopep8的使用
 &emsp;&emsp;autopep8是第3方模块,主要用于按照pep8规范排版,下面的命令将源文件重新排版
 
 &emsp;&emsp;`autopep8.exe --in-place *.py`
 
-------
 # cx_Freeze 使用
 &emsp;&emsp;cx_Freeze可以将Python编译成windows的exe可执行文件，需要安装VC2015运行时，安装完成后执行 `python cxfreeze-postinstall`
 
@@ -451,7 +445,6 @@ def Is64Windows():
 
 &emsp;&emsp;`cxfreeze *.py --base-name=win32gui`
 
-------
 # PyQt5
 ## QCheckBox复选框对象
 &emsp;&emsp;对象的创建
@@ -570,6 +563,7 @@ myBuffer = create_string_buffer(1024) #创建1024字节的byte的空间
 myBuffer.value = b"test"  #赋值
 puc = POINTER(c_char)
 puc = myBuffer.raw   #创建字符串指针,该指针指向字符串首地址
+```
 
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
@@ -754,6 +748,7 @@ id(x) == id(y)
 Out[62]: True
 ```
 &emsp;&emsp;用`np.sin`计算要比用`for`循环调用`math.sin`计算快一个数量级.常用的内置`ufunc`函数有:
+
 ```
 add(x,y)        #数组加法,+运算符重载,z = x + y, z = add(x,y),可以写成add(x,y,z)
 subtract(x,y)   #数组减法,-运算符重载,用法同上
