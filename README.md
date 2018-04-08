@@ -24,10 +24,558 @@
     - [其它绘图函数](#其它绘图函数)
     - [完整代码](#完整代码)
 
+# pip命令
+**pip 是Python的包管理工具**
+
+用pip更新自身
+`pip install -U pip`
+
+在pip源中查找对应包
+`pip search PackageName`
+
+用pip安装包
+`pip install PackageName`
+
+用pip更新包
+`pip install -U PackageName`
+
+用pip卸载包
+`pip uninstall PackageName`
+
+列出当前安装的包
+`pip list`
+
+列出所有过期的包
+`pip list --outdated`
+
+使用豆瓣源安装
+`pip  install PackageName  -i  https://pypi.doubanio.com/simple/`
+
+下载的whl文件也可以用上面的pip命令安装，带setup.py的文件执行
+`python setup.py install`
+
+------
+# os模块
+`os.getcwd()    #返回当前目录`
+
+`os.chdir(path) #改变当前路径`
+
+`os.listdir(path)    #列举path目录下的所有文件和文件夹,包含隐藏文件，返回的是列表，不列出子目录中相关信息`
+
+`os.path.getsize(path)  #返回文件的字节大小，若是文件夹返回0`
+
+`os.path.isdir(path)     #存在的路径是否是目录，返回True或False，不存在返回False`
+
+`os.path.isfile(filename)   #存在的路径是否是文件判断，返回True或False，不存在返回False`
+
+`os.path.exists(path)   #文件或文件夹是否存在，返回True或False`
+
+`os.path.split('D:\\pythontest\\ostest\\Hello.py')   #返回的是元组('D:\\pythontest\\ostest', 'Hello.py')`
+
+`os.path.split('D:\\pythontest\\ostest\\') #返回的是元组('D:\\pythontest\\ostest', '')`
+
+`os.path.split('D:\\pythontest\\ostest')   #返回的是元组('D:\\pythontest', 'ostest')`
+
+`os.path.splitext("D:\\pythontest\\ostest\\test.exe")#分离文件名与扩展名,返回(D:\\pythontest\\ostest\\test,exe)元组,可做分片操作`
+
+`os.path.join('D:\\pythontest', 'ostest')   #路径连接返回D:\\pythontest\\ostest`
+
+`os.path.dirname('D:\\pythontest\\ostest\\hello.py')    #返回D:\\pythontest\\ostest`
+
+`os.path.dirname('D:\\pythontest\\ostest\\')    #返回'D:\\pythontest\\ostest'`
+
+`os.path.dirname('D:\\pythontest\\ostest')  #返回'D:\\pythontest'`
+
+`os.path.basename('D:\\pythontest\\ostest\\hello.py')   #返回hello.py`
+
+`os.path.basename('D:\\pythontest\\ostest\\')   #返回空字符`
+
+`os.path.basename('D:\\pythontest\\ostest') #返回ostest`
+
+`os.path.normpath(path) #路径规范`
+
+`os.path.getmtime(path) #文件或文件夹的最后修改时间，从新纪元(1970年1月1日0时0分0秒)到访问时的秒数`
+
+`os.path.getatime(path) #文件或文件夹的最后访问时间，从新纪元(1970年1月1日0时0分0秒)到访问时的秒数`
+
+`os.path.getctime(path) #文件或文件夹的创建时间，从新纪元(1970年1月1日0时0分0秒)到访问时的秒数`
+
+`os.stat(文件/目录) #os.stat(文件/目录).st_mtime属性是最后修改时间,st_mtime是创建时间`       
+
+`os.remove()    #删除文件,不能用于文件夹删除`
+
+`os.rmdir() #删除空目录`
+
+`os.mkdir() #创建目录,只能创建一级目录`
+
+`os.makedirs()  #创建多级目录`
+
+`os.sep #属性,是路径分割符，对应于具体的操作系统\\或/,用于生成路径,str = dir + os.sep + filename`
+
+`os.name    #属性,操作系统的相关信息`
+
+`os.lineseq #属性,当前平台的行结束符,windows下是"\r\n",linux下是'\r'`
+
+`os.environ #属性,以字典的形式返回当前系统的环境变量os.environ['path']相当于sys.path`
+
+------
+# sys模块
+`sys.version_info   #属性,返回解释器的相关属性信息`
+
+`sys.version    #属性,返回解释器的相关属性信息`
+
+`sys.platform   #属性,操作系统相关信息`
+
+`sys.executable #属性,Python解释器的绝对路径`
+
+`sys.argv   #属性,命令行相关参数,是一个字符串列表sys.argv[0]是脚本路径,sys.argv[1]是第一个参数,多个参数用空格间隔,不能用逗号`
+
+`sys.path   #属性,是字符串列表,返回当前的搜索路径[0]是当前脚本路径,用sys.path.append('path')用来追加路径`
+
+`sys.stdin  #属性,当前的标准输入`
+
+`sys.stdout #属性,当前的标准输出`
+
+`sys.stderr #属性,当前的标准错误文件流`
+
+`sys.modules    #属性,返回当前已经加载的模块名称,返回一个字典,模块名是键,路径是值`
+
+`sys.maxsize    #属性返回平台自然表示的最大有符号整数返回,64位是2^63 - 1,32位是2^31 - 1`
+
+`sys.exit() #结束方法,可以返回参数sys.exit(0)`
+
+------
+# 常用函数
+
+`dir(模块名/类名) #返回可见的方法和属性,例如dir()返回当前模块的所有属性和方法,dir(str)返回str对象的所有属性和方法`
+
+`hex(int对象)    #转换成16进制返回的是字符串`
+
+`oct(int对象)    #转换成8进制返回的是字符串`
+
+`bin(int对象)    #转换成2进制返回的是字符串`
+
+`int(字符串对象)  #int转换成10进制时,注意两处,第一是要加双引号,第二是要注明输入的进制int('0x10',16),默认输入是10进制`
+
+`print(end="\n",file=stdout)  #可以修改参数不输出换行或者重定向到文件`
+
+`pow(x,y)           #x^y等同于x**y`
+
+`abs()              #绝对值`
+
+`round()            #返回数轴上最近的整数,round(number[,ndigits]),ndigits是保留的小数位数`
+
+`pass               #空操作`
+
+`input("请输入")    #命令行输入`
+
+`cmp(x,y)           #x<y返回-1,x==y返回1,x>y返回1`
+
+`range(3)           #返回迭代对象[0,1,2],可以指定开始位置range(1,3)返回[1,2],一般用于for语句迭代`
+```
+#循环打印0,1,2
+for i in range(3):
+    print(i)
+```
+
+`len(list/str)      #返回列表或者字符串的个数,对于列表返回最外层`
+
+`repr(str)        #返回代引号的字符串"str"`
+
+------
+# math模块
+&emsp;&emsp;Python自带的math模块,常用的方法如下:
+
+&emsp;&emsp;`math.floor(5.2)`向下取整,返回5.0
+
+&emsp;&emsp;`math.ceil(5.2)`向上取整,返回6.0
+
+&emsp;&emsp;`math.sqrt(5.2)`算术平方根,返回浮点数,这里注意cmath模块的`cmath.sqrt()`执行的是复数运算
+
+&emsp;&emsp;`math.log10(10)`以10为底的对数运算,这里返回1.0
+
+&emsp;&emsp;`math.log(1024,2)`以2为底的对数运算,这里返回10,相当于log2 10
+
+------
+# shutil模块
+&emsp;&emsp;Python自带shutil模块,常用的方法如下:
+
+&emsp;&emsp;`shutil.copytree(src,dst)`文件夹拷贝
+
+&emsp;&emsp;`shutil.rmtree(path)`文件夹删除
+
+------
+# 运算符
+```
+C中的逻辑且&&在Python中是and
+C中的逻辑或||在Python中是or
+C中取反!在Python中是not
+也支持位运算符并且,比如&(与),|(或),^(异或),~(非,按位取反);
+支持+=等操作符,但是不支持自加等运算符
+>>和<<是算术移位,符号位扩展
+```
+
+------
+# 字符串操作  
+
+`str.strip()               #返回去掉泛空格后的字符串，可以指定字符`
+
+`str.lstrip()              #左边`
+
+`str.rstrip()              #右边`
+
+`str.startswith("*")       #是否以*开始`
+
+`str.endswith("*")         #是否以*结束`
+
+`str.replace(old,new)      #字符串替换`
+
+`str.split("tag")          #用tag分割字符串，返回分割后的列表`
+
+`str.find("substr")        #返回首个匹配的位置,从0开始,找不到返回-1`
+
+`str.isalpht()             #是否是字母`
+
+`str.isdigit()             #是否是数字`
+
+`in                        #字串判断操作符 substr in str 子串在str中返回true`
+
+`str.split(分割符)         #用分割符分割字符串,参数为空时是空格,返回列表`
+
+`join                      #字符串连接,"\\".join(["C:","test"])  C:\\test`
+
+`list(str)                 #将字符串中的每个元素按照列表返回`
+
+`int('42')                 #将字符串对象转换成int对象 42`
+
+`str(42)                   #将int对象转换成字符串对象'42'`
+
+------
+# 字符串的编码和解码
+&emsp;&emsp;源代码中`# -*- coding:utf-8 -*-`是告诉Python解释器,源文件中的字符串用UTF-8编码(是unicode编码的一种实现),这是一种推荐的源文件编码方式.类似的还有`gbk,utf-16,ascii`,`gbk`是中文编码,它是`gb2312`的一个超集,`# -*- coding:gbk -*-`
+
+&emsp;&emsp;对于字符串的传输,要按照设计的编码标准来进行传输,传输前或者接收后需要将字符串按照特定方式进行编解码,字符串对应提供了对应的编解码方法:
+
+`str.decode('gb2312') #将str按照gb2312解码,返回对应的unicode编码`
+
+`str.encode('gb2312') #将str(unicode编码)转码成gb2312编码`
+
+&emsp;&emsp;decode的作用是其它编码的字符串解码成unicode,encode作用是将unicode编码的字符串重新编码,过程如下:
+
+&emsp;&emsp;&emsp;&emsp;decode(特定编码)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;encode(特定编码)        
+&emsp;&emsp;特定编码--------------->unicode编码--------------->特定编码
+
+&emsp;&emsp;Python中的str对象都是unicode编码的,非unicode是bytes对象可以用type进行测试,对于字符串明确需要存放为bytes对应而不是str需要加b前缀,如下:
+```
+str1 = "Hello"
+
+type(str1)
+Out[2]: str
+
+str1 = b"Hello"
+
+type(str1)
+Out[4]: bytes
+```
+
+&emsp;&emsp;Python中打开文件报UnicodeDecodeError的解决方案:
+
+* 方案1 `file = open(file,encoding='utf-8')`
+* 方案2 `file = open(file,'rb')`
+
+------
+# 正则表达式
+&emsp;&emsp;正则表达式(regex)是由一些字符和特殊符号组成的字符串，能够按照一定的模式匹配一系列相似的字符串。Python通过标准库的re模块，来支持正则表达式。Python中可以立即执行匹配,也可以将模式字符串编译成模式对象后,将模式对象与字符串匹配.
+
+* 立即执行匹配
+```
+import re
+
+text1 = 'Hello spam...World'
+text2 = 'Hello spam..other'
+
+#正则表达式'Hello(.*)World'表示寻找Hello和World之间的所有字符
+matchobj = re.match('Hello(.*)World',text2)
+print(matchobj)
+#匹配失败,这里返回None,这里的matchobj在if语句中对应False
+```
+&emsp;&emsp;上面的`match`方法第一个参数是模式字符串,Hello和World代表字符串本身,`(.*)`,代表任何字符匹配0到多次.其中的`.`表示任何字符但是不包含\n,其中的`*`表示匹配0次或多次前面出现的正则表达式.两边的括号,代表保留匹配上的字串,另存为子组,下面的代码是成功匹配的示例:
+
+```
+import re
+
+text1 = 'Hello spam...World'
+text2 = 'Hello spam..other'
+
+#正则表达式'Hello(.*)World'表示寻找Hello和World之间的所有字符
+matchobj = re.match('Hello(.*)World',text1)
+
+if matchobj:
+    print("匹配成功")
+```
+&emsp;&emsp;上面的代码匹配成功,`matchobj`是一个匹配对象,可以用if语句测试是`True`. `matchobj.group()`返回匹配上的整个字符串,也可以用`matchobj.group(0)`,这里是`'Hello spam...World'`.`matchobj.group(1)`返回匹配上的第一个子串,这里是`spam...".group(num=0)`匹配的整个表达式的字符串,`group()` 可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组。groups()	返回一个包含所有小组字符串的元组，从 1 到 所含的小组号。预编译匹配的版本如下:
+
+* 预编译匹配
+```
+import re
+
+text1 = 'Hello spam...World'
+text2 = 'Hello spam..other'
+
+pattobj = re.compile('Hello(.*)World')
+
+matchobj = pattobj.match(text1)
+
+if matchobj:
+    print("匹配成功")
+```
+&emsp;&emsp;对于一个模式的多次匹配建议预编译,这样会大幅提高匹配速度`.[]`代表字符集匹配,比如`[\t]*`表示匹配0次或多次空格或者制表符
+正则表达式示例：
+ ``` 
+foo 无特殊符号，只能匹配 foo
+foo|bar 匹配foo或bar
+b.b 其中的.匹配除了\n外的所有单个字符
+^Dear 其中的^表示匹配起始位置
+sh$ 表示匹配以sh结尾的字符
+* 匹配0次或多次前面出现的正则表达式
++ 匹配1次或多次前面出现的正则表达式
+? 匹配0次或1次前面出现的正则表达式
+{N}匹配N次前面出现的正则表达式
+{M,N}匹配M~N次前面出现的正则表达式
+[...]匹配字符集中的单个字符
+[x-y]匹配x-y内的单个字符
+[^...]不匹配字符集中的字符
+\d 匹配任何十进制数字与[0-9]类似，\D与\d相反
+\w匹配任何字母和数字，\W相反
+\s匹配任何泛空格字符，回车，制表，空格，\S与之相反
+ ``` 
+
+------
+# Python代码基本框架
+``` 
+# -*- coding:utf-8 -*-
+if __name__ == '__main__':
+    import os
+    import sys
+ ``` 
+
+------
+# 参考代码段
+## 文件迭代
+```python
+# -*- coding: utf-8 -*-
+"""
+os.walk()的使用,用于迭代目录下的所有文件
+目录结构:
+rootdir ---> dir0 -> 1.txt,2.txt
+         |-> dir1 -> 3.txt
+         |-> dir2 -> 空目录
+         |-> 4.txt
+os.walk('rootdir') 返回一个三元元组(root,dirs,files),下面的代码用于迭代所有文件:
+    第一次迭代(root,dirs,files) = (rootdir,[dir0,dir1,dir2],[4.txt])
+    第二次迭代(root,dirs,files) = (rootdir\dir0,[],[1.txt,2.txt])
+    第三次迭代(root,dirs,files) = (rootdir\dir1,[],[3.txt])
+    第三次迭代(root,dirs,files) = (rootdir\dir2,[],[])
+"""
+for(root,dirs,files) in os.walk('rootdir'):
+    print(root + os.sep + dirs + os.sep + files)
+```
+
+## 设置豆瓣源的Python脚本
+```  
+# -*- coding:utf-8 -*-
+import os
+ini="""[global]
+index-url = https://pypi.doubanio.com/simple/
+[install]
+trusted-host=pypi.doubanio.com
+"""
+pippath=os.environ["USERPROFILE"]+"\\pip\\"
+if not os.path.exists(pippath)
+    os.mkdir(pippath)
+with open(pippath+"pip.ini","w+") as f:
+    f.write(ini)
+```  
+
+## 判断操作系统是32位还是64位
+&emsp;&emsp;这里推荐这种方法,sys或者os模块的其他方法是判断Python解释器的版本,在64位机器上安装的32位解释器的话,会判断错误
+```  
+# -*- coding:utf-8 -*-
+def Is64Windows():
+    #64位返回true
+    return 'PROGRAMFILES(X86)' in os.environ
+```
+
+------
+# qtconsole 使用
+
+`变量名??`  显示相关的帮助信息
+
+`函数名/模块名??`   显示相关的帮助信息,注意函数名在这里不能带括号
+
+------
+# pyuic5.exe的使用
+&emsp;&emsp;pyuic5.exe用于将Qt Designe生成的*.ui文件编译成Python代码，在cmd中执行下面的命令将生成的ui文件重定向输出到py:文件`pyuic5 *.ui > 1.py `   
+
+------
+# Pylint的基本使用方法
+&emsp;&emsp;Pylint是Python源代码的静态检查工具
+
+&emsp;&emsp;`pylint *.py`   处理*.py文件
+
+&emsp;&emsp;违反编码习惯-C
+
+&emsp;&emsp;代码需要重构,相当差-R
+
+&emsp;&emsp;警告-W
+
+&emsp;&emsp;错误-E
+
+&emsp;&emsp;致命错误-F
+
+------
+# autopep8的使用
+&emsp;&emsp;autopep8是第3方模块,主要用于按照pep8规范排版,下面的命令将源文件重新排版
+
+&emsp;&emsp;`autopep8.exe --in-place *.py`
+
+------
+# cx_Freeze 使用
+&emsp;&emsp;cx_Freeze可以将Python编译成windows的exe可执行文件，需要安装VC2015运行时，安装完成后执行 `python cxfreeze-postinstall`
+
+&emsp;&emsp;控制台程序编译
+
+&emsp;&emsp;`cxfreeze *.py` 生成dist目录；
+
+&emsp;&emsp;GUI程序编译
+
+&emsp;&emsp;`cxfreeze *.py --base-name=win32gui`
+
+------
+# PyQt5
+## QCheckBox复选框对象
+&emsp;&emsp;对象的创建
+
+&emsp;&emsp;`self.checkBox = QtWidgets.QCheckBox(父容器)`这里的父容器可以是对话框对象,主窗口对象等
+
+&emsp;&emsp;常用方法
+
+&emsp;&emsp;`self.checkBox.checked()`返回True表示被勾选,False没有被勾选
+
+&emsp;&emsp;`self.checkBox.setEnabled(False)`显示但是不使能,显示是灰色
+
+&emsp;&emsp;`self.checkBox.setCheckable(False)`显示并且不是灰色,但是不能操作
+
+&emsp;&emsp;`self.checkBox.setChecked(True)`可以操作的情况下,设置默认选中
+
+&emsp;&emsp;`self.checkBox.setText(text)`设置复选框显示的文本
+
+# ctypes使用
+&emsp;&emsp;Python 可以通过使用 ctypes 模块调用 c 函数，这其中包括可以定义 c 的变量类型（包括结构体类型、指针类型）,可以和共享库以及Dll中的C函数进行通信.它是Python的标准模块,建议用`from ctypes import *`进行导入.
+
+&emsp;&emsp;C类型定义
+```
+i = c_int(45)   #定义一个 int 型变量，值为 45,这里的i可以直接传给C函数int类型的入参
+
+i.value         #打印变量的值
+Out[3]: 45
+
+i.value = 56    #修改变量的值
+
+i.value
+Out[5]: 56
+```
+
+## ctypes类型和C类型对应表
+
+| ctypes type  |           C type           |       标准Python类型 |
+|--------------|:--------------------------:|-----------------:|
+| c_bool       |            _Bool           |          bool(1) |
+| c_char       |            char            |     1个字节的bytes对象 |
+| c_wchar      |           wchar_t          |   1个字符的unicode对象 |
+| c_byte       |            char            |              int |
+| c_ubyte      |        unsigned char       |              int |
+| c_short      |            short           |              int |
+| c_ushort     |       unsigned short       |              int |
+| c_int        |             int            |              int |
+| c_uint       |        unsigned int        |              int |
+| c_long       |            long            |              int |
+| c_ulong      |        unsigned long       |              int |
+| c_float      |            float           |            float |
+| c_double     |           double           |            float |
+| c_longdouble |         long double        |            float |
+| c_char_p     |   char * (NUL terminated)  |   string or None |
+| c_wchar_p    | wchar_t * (NUL terminated) |  unicode or None |
+| c_void_p     |           void *           | int/long or None |
+
+## 结构体
+&emsp;&emsp;Python中如何定义C中对应的结构体,如C中下面的结构体
+```
+struct MyStruct
+{
+    float x;
+    float y;
+};
+```
+&emsp;&emsp;对应于Python中的类,必须继承自`ctypes.Structure`
+```
+class MyStruct(Structure):
+    _fields_ = [("x", c_float), 
+                ("y", c_float)]
+
+MyStruct1 = MyStruct()  #创建对应的类/结构体
+MyStruct1.x = c_float(1.2)  #结构体元素赋值
+MyStruct1.y = c_float(1.5)  
+ptMyStruct = pointer(MyStruct1)  #创建并返回一个指向MyStruct1的指针实例,这里的MyStruct1必须是一个存在的实例对象
+```
+
+## 指针
+&emsp;&emsp;`byref(x [, offset])`返回 x 的地址,x 必须为ctypes类型的一个实例.相当于c的 &x.offset 表示偏移量.例如下面的代码:
+```
+a = c_int(10)
+ptr = byref(a)   #返回a的地址
+```
+
+&emsp;&emsp;`pointer(x)`创建并返回一个指向 x 的指针实例, x 是一个实例对象不一定必须是ctypes类型,上面已经描述
+
+&emsp;&emsp;`POINTER(type)`返回一个类型,这个类型是指向 type 类型的指针类型.type 是 ctypes 的一个类型,相当于C中的指针定义,比如下面的代码,定义了两个指针,但是都指向a
+```
+>>> a = c_int(66)         # 创建一个 c_int 实例
+>>> b = pointer(a)        # 创建指针
+>>> c = POINTER(c_int)(a) # 创建指针,并指向a
+>>> b
+<__main__.LP_c_long object at 0x00E12AD0>
+>>> c
+<__main__.LP_c_long object at 0x00E12B20>
+>>> b.contents            # 输出 a 的值,获取指针指向地址的内容
+c_long(66)
+>>> c.contents            # 输出 a 的值
+c_long(66)
+```
+
+## 共享空间的传递
+&emsp;&emsp;传递字符串时一定要将字符串转成byte,也就是需要进行str和byte类型的转换:
+```
+str->bytes：bytes(s, encoding='utf-8')
+bytes->str：str(b, encoding='utf-8')
+```
+&emsp;&emsp;或者:
+```
+mybyte = b"test"
+pcu = c_char_p(mybyte)  #字符串指针
+```
+&emsp;&emsp;也可以在Python中创建空间,将该空间的首地址通过指针的形式传递给C,如下面的代码:
+```
+myBuffer = create_string_buffer(1024) #创建1024字节的byte的空间
+myBuffer.value = b"test"  #赋值
+puc = POINTER(c_char)
+puc = myBuffer.raw   #创建字符串指针,该指针指向字符串首地址
+
 # Ipython
 &emsp;&emsp;`函数名/模块名?`   显示相关的帮助信息,注意函数名在这里不能带括号`ESC`退出
 
 # Notebook
+&emsp;&emsp;`%matplotlib inline` 内嵌图表,不用调用plt.show()
 
 # NumPy
 &emsp;&emsp;Python中的列表对象(list)可以用来保存一组值,用作数组.但实际上列表中可以保存任何对象(不止是数值对象),列表的元素保存的是对象的指针,这样用来保存`[1,2,3]`,就需要3个指针和3个int对象.例如64位平台的64位Python解释器,`a = [1,2,3]`占用88字节,如下的代码:
@@ -191,7 +739,7 @@ array([ 0.00000000e+00,  6.42787610e-01,  9.84807753e-01,  8.66025404e-01,
         3.42020143e-01, -3.42020143e-01, -8.66025404e-01, -9.84807753e-01,
        -6.42787610e-01, -2.44929360e-16])
 ```
-&emsp;&emsp;可以将结果直接输出到x,如下面的代码:
+&emsp;&emsp;可以将结果直接输出到x(x和y共享内存),如下面的代码:
 ```
 x = np.linspace(0,2*np.pi,10)
 y = np.sin(x,out = x)
@@ -207,26 +755,28 @@ Out[62]: True
 ```
 &emsp;&emsp;用`np.sin`计算要比用`for`循环调用`math.sin`计算快一个数量级.常用的内置`ufunc`函数有:
 ```
-add(x,y)        #数组加法
-subtract(x,y)   #数组减法
-multiply(x,y)   #数组乘法
-divide(x,y)     #数组除法,如果x和y都是整数,那么执行整数除法
-true_divide(x,y)  #数组除法,返回精确值
-floor_divide(x,y) #数组除法,取整
-negative(x)       #返回-x
-power(x,y)        #返回x^y
-remainder(x,y)    #返回x%y
-equal(x,y)           #判断对应元素是否相等,返回对应的bool数组
-not_equal(x,y)       #判断对应元素是否不相等,返回对应的bool数组
-less(x,y)            #判断对应x<y,返回对应的bool数组
-less_equal(x,y)      #判断对应x<=y,返回对应的bool数组
-greater(x,y)         #判断对应x>y,返回对应的bool数组
-greater_equal(x,y)   #判断对应x>=y,返回对应的bool数组
-np.logical_and       #相当于Python中的and逻辑与
-np.logical_or        #相当于Python中的or逻辑或
-np.logical_not       #相当于Python中的not逻辑非
-np.logical_xor       #相当于Python中的xor逻辑异或
+add(x,y)        #数组加法,+运算符重载,z = x + y, z = add(x,y),可以写成add(x,y,z)
+subtract(x,y)   #数组减法,-运算符重载,用法同上
+multiply(x,y)   #数组乘法,*运算符重载,用法同上
+divide(x,y)     #数组除法,如果x和y都是整数,那么执行整数除法,/运算符重载,用法同上
+true_divide(x,y)  #数组除法,返回精确值/运算符重载,用法同上
+floor_divide(x,y) #数组除法,取整//运算符重载,用法同上
+negative(x)       #返回-x,负号运算符重载
+power(x,y)        #返回x^y,**运算符重载
+remainder(x,y)    #返回x%y,%运算符重载
+equal(x,y)           #判断对应元素是否相等,返回对应的bool数组,==运算符重载
+not_equal(x,y)       #判断对应元素是否不相等,返回对应的bool数组,!=运算符重载
+less(x,y)            #判断对应x<y,返回对应的bool数组,<运算符重载
+less_equal(x,y)      #判断对应x<=y,返回对应的bool数组,<=运算符重载
+greater(x,y)         #判断对应x>y,返回对应的bool数组,>运算符重载
+greater_equal(x,y)   #判断对应x>=y,返回对应的bool数组,>=运算符重载
+np.logical_and       #相当于Python中的and逻辑与,没有运算符重载
+np.logical_or        #相当于Python中的or逻辑或,没有运算符重载
+np.logical_not       #相当于Python中的not逻辑非,没有运算符重载
+np.logical_xor       #相当于Python中的xor逻辑异或,没有运算符重载
 ```
+
+&emsp;&emsp;当标量于数组运算时,标量会自动扩展,不同大小的数组可以用广播的形式.
 
 # matplotlib
 &emsp;&emsp;matplotlib是Python的绘图库,提供了类似matlab的绘图功能,采用面向对象技术实现.在大型程序中更加有效.
